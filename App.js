@@ -12,6 +12,8 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import { createAppContainer } from 'react-navigation';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -60,8 +62,24 @@ const styles = StyleSheet.create({
 });
 
 const AppContainer = createMaterialBottomTabNavigator({
-  Home: {screen: HomeScreen},
-  Setting: {screen: SettingsScreen},
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="ios-home" color={tintColor} size={24}/>
+      )
+    }
+  },
+  Setting: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="ios-settings" color={tintColor} size={24}/>
+      )
+    }
+  },
 }, {
   initialRouteName : 'Home',
   activeColor: '#f0edf6',
