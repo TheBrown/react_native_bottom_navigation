@@ -9,6 +9,9 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createAppContainer } from 'react-navigation';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -16,14 +19,22 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+
+class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text>Home Screen</Text>
+      </View>
+    );
+  }
+}
+
+class SettingsScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Settings Screen</Text>
       </View>
     );
   }
@@ -47,3 +58,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+const AppContainer = createMaterialBottomTabNavigator({
+  Home: {screen: HomeScreen},
+  Setting: {screen: SettingsScreen},
+}, {
+  initialRouteName : 'Home',
+  activeColor: '#f0edf6',
+  inactiveColor: '#3e2465',
+  barStyle: { backgroundColor: '#694fad' },
+});
+
+export default createAppContainer(AppContainer);
